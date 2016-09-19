@@ -15,7 +15,6 @@ Jinja2==2.6
 Mako==0.7.3
 MarkupSafe==0.23
 MongoAlchemy==0.18
-Pillow==2.0.0
 SQLAlchemy==0.9.8
 WTForms==2.0.1
 Werkzeug==0.8.3
