@@ -13,7 +13,14 @@ def index():
 def about():
     return render_template('about.html')
 
+@app.route('/contact.html')
+def contact():
+    return render_template('contact.html')
 
+
+@app.route('/pricing.html')
+def pricing():
+    return render_template('pricing.html')
 
 
 if __name__ == '__main__':
