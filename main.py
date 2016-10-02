@@ -22,7 +22,7 @@ def contact():
 def pricing():
     return render_template('pricing.html')
 
-@app.route('/dash.html')
+@app.route('/dash')
 def dashBoard():
     return render_template('dash.html')
 
