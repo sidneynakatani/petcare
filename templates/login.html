@@ -30,7 +30,7 @@
 	<!-- Theme Style -->
 	<link rel="stylesheet" href="static/css/style.css">
 	<!-- Modernizr JS -->
-	<script src="static/static/js/modernizr-2.6.2.min.js"></script>
+	<script src="static/js/modernizr-2.6.2.min.js"></script>
 
         <!-- Bootstrap Core CSS -->
         <link href="static/css/bootstrap.min.css" rel="stylesheet">
@@ -59,11 +59,9 @@
 		</ul>
 		<h3 class="fh5co-lead">Connect with us</h3>
 		<p class="fh5co-social-icons">
-			<a href="#"><i class="icon-twitter"></i></a>
-			<a href="#"><i class="icon-facebook"></i></a>
-			<a href="#"><i class="icon-instagram"></i></a>
-			<a href="#"><i class="icon-dribbble"></i></a>
-			<a href="#"><i class="icon-youtube"></i></a>
+			<a href="#"><i class="icon-twitter"   style="color:blue"></i></a>
+			<a href="#"><i class="icon-facebook"  style="color:blue"></i></a>
+			<a href="#"><i class="icon-instagram" style="color:brown"></i></a>
 		</p>
 	</div>
 	<header id="fh5co-header" role="banner">
@@ -86,7 +84,7 @@
                         <h3 class="panel-title">Login</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" action="/auth" method="POST">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
@@ -100,7 +98,7 @@
                                     </label>
                                 </div>
                                 <div align="center">
-                                <button type="button" class="btn btn-primary btn-lg" style="width:145px">Entrar</button>
+                                <button type="submit" class="btn btn-primary btn-lg" style="width:145px">Entrar</button>
                                 <button type="button" class="btn btn-primary btn-lg">Registrar</button>
 				</div>
 

@@ -1,5 +1,5 @@
 import os
-from flask import render_template,Flask,request
+from flask import render_template, Flask, request, session, flash
 
 
 app = Flask(__name__)
@@ -19,15 +19,37 @@ def contact():
 
 
 @app.route('/login')
-def pricing():
+def login():
     return render_template('login.html')
 
 @app.route('/dash')
 def dashBoard():
+    if not session.get('logged_in'):
+    	return login()
+
     return render_template('dash.html')
+
+@app.route('/auth', methods=['POST'])
+def auth():
+
+    if request.form['password'] == 'password' and request.form['email'] == 'admin@admin.com':
+        session['logged_in'] = True
+	return render_template('dash.html')
+    else:
+        flash('wrong password!')
+
+    return login()
+    
+
+@app.route("/logout")
+def logout():
+    session['logged_in'] = False
+    return index()
+
 
 
 if __name__ == '__main__':
+    app.secret_key = os.urandom(12)
     app.run()
 
 
