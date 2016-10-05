@@ -1,8 +1,11 @@
 import os
+import sys
 from flask import render_template, Flask, request, session, flash
 
 
 app = Flask(__name__)
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 
 @app.route("/")
