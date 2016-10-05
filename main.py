@@ -7,6 +7,8 @@ from flask import render_template, Flask, request, session, flash
 app = Flask(__name__)
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
+app.secret_key = 'super secret key'
+app.config['SESSION_TYPE'] = 'filesystem'
 
 
 @app.route("/")
@@ -53,8 +55,6 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.secret_key = 'super secret key'
-    app.config['SESSION_TYPE'] = 'filesystem'
     app.debug = True
     app.run()
 
