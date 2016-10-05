@@ -33,7 +33,7 @@ def dashBoard():
 def auth():
 
     if request.form['password'] == 'password' and request.form['email'] == 'admin@admin.com':
-        session['logged_in'] = True
+        #session['logged_in'] = True
 	return render_template('dash.html')
     else:
         flash('wrong password!')
@@ -43,7 +43,7 @@ def auth():
 
 @app.route("/logout")
 def logout():
-    session['logged_in'] = False
+    #session['logged_in'] = False
     return index()
 
 
