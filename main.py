@@ -1,6 +1,8 @@
 import os
 import sys
 import logging
+import requests
+import json
 from flask import render_template, Flask, request, session, flash
 
 
@@ -37,8 +39,14 @@ def dashBoard():
 
 @app.route('/auth', methods=['POST'])
 def auth():
+    user = request.form['email']
+    password = request.form['password']
+    req = requests.post("https://omegagls.herokuapp.com//login", data={'user' : user, 'pass' : password} )
 
-    if request.form['password'] == 'password' and request.form['email'] == 'admin@admin.com':
+    response = json.loads(req.text)
+    auth = response['auth']
+
+    if auth:
         session['logged_in'] = True
 	return render_template('dash.html')
     else:
