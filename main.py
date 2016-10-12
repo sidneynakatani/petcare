@@ -39,9 +39,17 @@ def dashBoard():
 
 @app.route('/auth', methods=['POST'])
 def auth():
-    user = request.form['email']
+    email = request.form['email']
     password = request.form['password']
-    req = requests.post("https://omegagls.herokuapp.com//login", data={'user' : user, 'pass' : password} )
+    #req = requests.post("http://omegagls.herokuapp.com/login", data={'email' : email, 'pass' : password} )
+    
+    host = '{0}/login'.format(os.getenv('HOST'))
+    
+    if(os.getenv('HOST') == None):
+        print  'Acesso local.'
+	host = 'http://127.0.0.1:5000/login'
+
+    req = requests.post(host, data={'email' : email, 'pass' : password} )
 
     response = json.loads(req.text)
     auth = response['auth']
@@ -63,7 +71,8 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.debug = True
+    #app.debug = True
+    app.run(host='127.0.0.1', port=5001)
     app.run()
 
 
