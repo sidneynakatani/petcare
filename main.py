@@ -41,8 +41,6 @@ def dashBoard():
 def auth():
     email = request.form['email']
     password = request.form['password']
-    #req = requests.post("http://omegagls.herokuapp.com/login", data={'email' : email, 'pass' : password} )
-    
     host = '{0}/login'.format(os.getenv('HOST'))
     
     if(os.getenv('HOST') == None):
@@ -72,7 +70,7 @@ def logout():
 
 if __name__ == '__main__':
     #app.debug = True
-    app.run(host='127.0.0.1', port=5001)
+    #app.run(host='127.0.0.1', port=5001)
     app.run()
 
 
