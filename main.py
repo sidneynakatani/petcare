@@ -51,10 +51,11 @@ def auth():
 
     response = json.loads(req.text)
     auth = response['auth']
+    name = response['name']
 
     if auth:
         session['logged_in'] = True
-	return render_template('dash.html')
+	return render_template('dash.html', name = name)
     else:
         flash('wrong password!')
 
