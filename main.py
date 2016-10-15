@@ -37,6 +37,13 @@ def dashBoard():
 
     return render_template('dash.html')
 
+@app.route('/profile')
+def profile():
+    if not session.get('logged_in'):
+    	return login()
+
+    return render_template('profile.html')
+
 @app.route('/auth', methods=['POST'])
 def auth():
     email = request.form['email']
@@ -46,7 +53,7 @@ def auth():
     if(os.getenv('HOST') == None):
         print  'Acesso local.'
 	host = 'http://127.0.0.1:5000/login'
-
+	
     req = requests.post(host, data={'email' : email, 'pass' : password} )
 
     response = json.loads(req.text)
@@ -55,6 +62,7 @@ def auth():
 
     if auth:
         session['logged_in'] = True
+        session['logged_name'] = name
 	return render_template('dash.html', name = name)
     else:
         flash('wrong password!')
