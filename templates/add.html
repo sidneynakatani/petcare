@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Petsfinder</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
@@ -108,7 +108,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ name }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/profile"><i class="fa fa-fw fa-user"></i> Perfil</a>
+                            <a href="/profile"><i class="glyphicon glyphicon-user"></i> Perfil</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-envelope"></i> Mensagem</a>
@@ -126,8 +126,7 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-
-                    <li class="active">
+                    <li>
                         <a href="/dash"><i class="fa fa-desktop"></i> Inicio</a>
                     </li>
 
@@ -135,8 +134,8 @@
                         <a href="/profile"><i class="glyphicon glyphicon-user"></i> Perfil</a>
                     </li>
 
-                    <li>
-                        <a href="/add"><i class="glyphicon glyphicon-plus-sign"></i> Adicionar</a>
+                    <li class="active">
+                        <a href="charts.html"><i class="glyphicon glyphicon-plus-sign"></i> Adicionar</a>
                     </li>
 
                     <li>
@@ -146,6 +145,7 @@
    		    <li>
                         <a href="tables.html"><i class="fa fa-fw fa-envelope"></i> Mensagem</a>
                     </li>
+                    
                 
                 </ul>
             </div>
@@ -160,77 +160,80 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Olá <small>{{ session.logged_name }}</small>
+                            Adicionar um(a) amigo(a) perdido(a)
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-desktop"></i> Inicio
+                                <i class="glyphicon glyphicon-plus-sign"></i> Adicionar
                             </li>
                         </ol>
                     </div>
                 </div>
-                <!-- /.row -->
 
-               
-                
-                
+		<div class="col-lg-6">
 
-              
-                    <div class="col-lg-8">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-paw"></i> Meus amigos</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Identificação#</th>
-                                                <th>Data inclusão</th>
-                                                <th>Nome</th>
-                                                <th>Espécie animal</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>3326</td>
-                                                <td>10/21/2013</td>
-                                                <td>Mauricio</td>
-                                                <td>Gato</td>
-                                                <td>Encontado</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3325</td>
-                                                <td>10/21/2013</td>
-                                                <td>Batata</td>
-                                                <td>Cachorro</td>
-						<td>Perdido</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3324</td>
-                                                <td>10/21/2013</td>
-                                                <td>Carambola</td>
-                                                <td>Cachorro</td>
-                                                <td>Encontado</td>
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                               <div class="text-right">
-                                    <a href="/add">Incluir um(a) amigo(a) perdido(a) <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+<div class="thumbnail">
+      <img src="static/images/img_28.jpg">
+      <div class="caption">
+        <h3>Foto do(a) seu/sua amigo(a):</h3>
+        <p><a href="#" class="btn btn-primary" role="button">Selecionar uma foto</a></p>
+      </div>
+    </div>
+
+
+           	      
+   		    	             
+	        </div>
+               	    
+			 
+		<div class="col-lg-6">
+           	      
+   		     <div class="form-group">
+		          <label> Nome </label>
+		          <input class="form-control">	                
+		     </div>	
+
+		      <div class="form-group">
+		          <label> Espécie </label>
+		          <input class="form-control">				                
+		     </div>
+	
+		     <div class="form-group">
+						  
+                        <label> Status </label>
+			<div class="dropdown">
+			  <button class="btn btn-default dropdown-toggle" 
+				  type="button" 
+				  data-toggle="dropdown" 
+			          aria-haspopup="true" 
+                                  aria-expanded="true"
+				  style="width:145px">
+			          Perdido
+			    <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			    <li>Encontado</li>
+			    <li>Doação</li>
+			    <li>Outros</li>
+			  </ul>
+			</div>		     
+		      </div>
+
+		       <div class="form-group">
+			    </br></br></br></br></br></br>
+			    <button type="submit" class="btn btn-primary btn-lg" style="width:145px">Adicionar</button>
+                            <button type="reset"  class="btn btn-default btn-lg">Cancelar</button>
+                           
+		       </div>	                
+	             
+	        </div>
+
+
+		     
                 </div>
                 <!-- /.row -->
-
-
-                 <div> </br></br></br></br></br></br></br></div>
-
+		
             </div>
             <!-- /.container-fluid -->
 

@@ -44,6 +44,13 @@ def profile():
 
     return render_template('profile.html')
 
+@app.route('/add')
+def add():
+    if not session.get('logged_in'):
+    	return login()
+
+    return render_template('add.html')
+
 @app.route('/auth', methods=['POST'])
 def auth():
     email = request.form['email']
@@ -52,7 +59,8 @@ def auth():
     
     if(os.getenv('HOST') == None):
         print  'Acesso local.'
-	host = 'http://127.0.0.1:5000/login'
+	#host = 'http://127.0.0.1:5000/login'
+        host = 'http://omegagls.herokuapp.com/login'
 	
     req = requests.post(host, data={'email' : email, 'pass' : password} )
 
