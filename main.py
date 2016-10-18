@@ -51,6 +51,13 @@ def add():
 
     return render_template('add.html')
 
+@app.route('/config')
+def config():
+    if not session.get('logged_in'):
+    	return login()
+
+    return render_template('config.html')
+
 @app.route('/auth', methods=['POST'])
 def auth():
     email = request.form['email']
