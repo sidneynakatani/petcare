@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Petsfinder</title>
+    <title>SB Admin - Bootstrap Admin Template</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
@@ -108,7 +108,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ name }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/profile"><i class="glyphicon glyphicon-user"></i> Perfil</a>
+                            <a href="/profile"><i class="fa fa-fw fa-user"></i> Perfil</a>
                         </li>
                         <li>
                             <a href="/message"><i class="fa fa-fw fa-envelope"></i> Mensagem</a>
@@ -126,6 +126,7 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
+
                     <li>
                         <a href="/dash"><i class="fa fa-desktop"></i> Inicio</a>
                     </li>
@@ -134,18 +135,17 @@
                         <a href="/profile"><i class="glyphicon glyphicon-user"></i> Perfil</a>
                     </li>
 
-                    <li class="active">
-                        <a href="charts.html"><i class="glyphicon glyphicon-plus-sign"></i> Adicionar</a>
+                    <li>
+                        <a href="/add"><i class="glyphicon glyphicon-plus-sign"></i> Adicionar</a>
                     </li>
 
                     <li>
                         <a href="/config"><i class="glyphicon glyphicon-cog"></i> Configuração</a>
                     </li>
                    
-   		    <li>
+   		    <li class="active">
                         <a href="/message"><i class="fa fa-fw fa-envelope"></i> Mensagem</a>
                     </li>
-                    
                 
                 </ul>
             </div>
@@ -160,80 +160,83 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Adicionar um(a) amigo(a) perdido(a)
+                            Olá <small>{{ session.logged_name }}, você tem 1 mensagem não lida</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="glyphicon glyphicon-plus-sign"></i> Adicionar
+                                <i class="fa fa-desktop"></i> Inicio
                             </li>
                         </ol>
                     </div>
                 </div>
+                <!-- /.row -->
 
-		<div class="col-lg-6">
+               
+                
+                
 
-
-<div class="thumbnail">
-      <img src="static/images/img_28.jpg">
-      <div class="caption">
-        <h3>Foto do(a) seu/sua amigo(a):</h3>
-        <p><a href="#" class="btn btn-primary" role="button">Selecionar uma foto</a></p>
-      </div>
-    </div>
-
-
-           	      
-   		    	             
-	        </div>
-               	    
-			 
-		<div class="col-lg-6">
-           	      
-   		     <div class="form-group">
-		          <label> Nome </label>
-		          <input class="form-control">	                
-		     </div>	
-
-		      <div class="form-group">
-		          <label> Espécie </label>
-		          <input class="form-control">				                
-		     </div>
-	
-		     <div class="form-group">
-						  
-                        <label> Status </label>
-			<div class="dropdown">
-			  <button class="btn btn-default dropdown-toggle" 
-				  type="button" 
-				  data-toggle="dropdown" 
-			          aria-haspopup="true" 
-                                  aria-expanded="true"
-				  style="width:145px">
-			          Perdido
-			    <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-			    <li>Encontado</li>
-			    <li>Doação</li>
-			    <li>Outros</li>
-			  </ul>
-			</div>		     
-		      </div>
-
-		       <div class="form-group">
-			    </br></br></br></br></br></br>
-			    <button type="submit" class="btn btn-primary btn-lg" style="width:145px">Adicionar</button>
-                            <button type="reset"  class="btn btn-default btn-lg">Cancelar</button>
-                           
-		       </div>	                
-	             
-	        </div>
-
-
-		     
+              
+                    <div class="col-lg-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-fw fa-envelope"></i> Mensagem</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Identificação#</th>
+						<th>Data</th>
+                                                <th>Mensagem</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>3326</td>
+                                                <td>10/21/2013</td>
+                                                <td><a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">Alteração</a></td>
+                                                <td>Lida</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3325</td>
+                                                <td>10/21/2013</td>
+                                                <td><a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">Notícia</a></td>
+                                                <td>Lida</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3324</td>
+                                                <td>10/21/2013</td>
+                                                <td><a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">Notícia</a></td>
+                                                <td>Nova</td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.row -->
-		
+
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <p> Teste </p>
+       <p>Lorem ipsum dolor sit amet, consectetur...</p>
+       <p>Lorem ipsum dolor sit amet, consectetur...</p>
+          
+    </div>
+  </div>
+</div>
+
+
+                 <div> </br></br></br></br></br></br></br></div>
+
             </div>
             <!-- /.container-fluid -->
 
@@ -249,10 +252,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="static/js/bootstrap.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="static/js/plugins/morris/raphael.min.js"></script>
-    <script src="static/js/plugins/morris/morris.min.js"></script>
-    <script src="static/js/plugins/morris/morris-data.js"></script>
+    
 
 </body>
 

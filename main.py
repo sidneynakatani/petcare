@@ -58,6 +58,13 @@ def config():
 
     return render_template('config.html')
 
+@app.route('/message')
+def message():
+    if not session.get('logged_in'):
+    	return login()
+
+    return render_template('message.html')
+
 @app.route('/auth', methods=['POST'])
 def auth():
     email = request.form['email']
