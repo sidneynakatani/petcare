@@ -4,6 +4,7 @@ import logging
 import requests
 import json
 from flask import render_template, Flask, request, session, flash
+from controller.login import LoginController
 
 
 app = Flask(__name__)
@@ -67,16 +68,9 @@ def message():
 
 @app.route('/auth', methods=['POST'])
 def auth():
-    email = request.form['email']
-    password = request.form['password']
-    host = '{0}/login'.format(os.getenv('HOST'))
     
-    if(os.getenv('HOST') == None):
-        print  'Acesso local.'
-	#host = 'http://127.0.0.1:5000/login'
-        host = 'http://omegagls.herokuapp.com/login'
-	
-    req = requests.post(host, data={'email' : email, 'pass' : password} )
+    login = LoginController()
+    req = login.auth(request)
 
     response = json.loads(req.text)
     auth = response['auth']
@@ -90,7 +84,18 @@ def auth():
         flash('wrong password!')
 
     return login()
+
+@app.route('/register', methods=['POST'])
+def register():
     
+    login = LoginController()
+    req = login.register(request)
+
+    response = json.loads(req.text)
+    status = response['status']
+    print status
+
+    return render_template('login.html')   
 
 @app.route("/logout")
 def logout():
