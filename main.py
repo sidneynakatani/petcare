@@ -91,9 +91,10 @@ def register():
     login = LoginController()
     req = login.register(request)
 
-    response = json.loads(req.text)
-    status = response['status']
-    print status
+    #FIXME Verify why dont work
+    #response = json.loads(req.text)
+    #status = response['status']
+    #print status
 
     return render_template('login.html')   
 
