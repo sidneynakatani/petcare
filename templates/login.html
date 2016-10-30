@@ -151,51 +151,125 @@
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">Registro</h4>
-      </div>
-      <div class="modal-body">
-        <form action="/register" method="POST">
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Nome:</label>
-            <input type="text" class="form-control" name="firstName" id="recipient-name">
-          </div>
-           <div class="form-group">
-            <label for="recipient-name" class="control-label">Sobrenome:</label>
-            <input type="text" class="form-control" name="lastName" id="recipient-name">
-          </div>
-	
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">E-mail:</label>
-            <input type="text" class="form-control" name="email" id="recipient-name">
-          </div>
-           <div class="form-group">
-            <label for="recipient-name" class="control-label">Confirme e-mail:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
 
-	  <div class="form-group">
-            <label for="recipient-name" class="control-label">Senha:</label>
-            <input type="text" class="form-control" name="password" id="recipient-name">
-          </div>
-           <div class="form-group">
-            <label for="recipient-name" class="control-label">Confirme senha:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-       
-          </div>
-             <div class="modal-footer">
-                 <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                 <button type="submit" class="btn btn-primary">Registrar</button>
-             </div>
-       </form>
-    </div>
-  </div>
+
+	<div class="alert alert-warning alert-dismissible" role="alert" id="allFieldAlertBox" style="display: none">
+	  <a class="close" onclick="$('#allFieldAlertBox').hide()">×</a> 
+	  <strong>Atenção!</strong> Todos os campos devem ser preenchidos.
+	</div>
+
+	<div class="alert alert-danger alert-dismissible" role="alert" id="emailAlertBox" style="display: none">
+	  <a class="close" onclick="$('#emailAlertBox').hide()">×</a> 
+	  <strong>Atenção!</strong> Os campos de e-mail e confirmação de e-mail devem ser iguais.
+	</div>
+
+	<div class="alert alert-danger alert-dismissible" role="alert" id="passAlertBox" style="display: none">
+	  <a class="close" onclick="$('#passAlertBox').hide()">×</a> 
+	  <strong>Atenção!</strong> Os campos de senha e confirmação de senha devem ser iguais.
+	</div>
+
+        <div class="alert alert-danger alert-dismissible" role="alert" id="emailValidateAlertBox" style="display: none">
+	  <a class="close" onclick="$('#emailValidateAlertBox').hide()">×</a> 
+	  <strong>Atenção!</strong> O e-mail não é valido.
+	</div>
+
+
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title" id="exampleModalLabel">Registro</h4>
+	      </div>
+	      <div class="modal-body">
+		<form action="/register" method="POST">
+		  <div class="form-group">
+		    <label for="recipient-name" class="control-label">Nome:</label>
+		    <input type="text" class="form-control" name="firstName" id="name">
+		  </div>
+		   <div class="form-group">
+		    <label for="recipient-name" class="control-label">Sobrenome:</label>
+		    <input type="text" class="form-control" name="lastName" id="surname">
+		  </div>
+	
+		  <div class="form-group">
+		    <label for="recipient-name" class="control-label">E-mail:</label>
+		    <input type="text" class="form-control" name="email" id="emailId">
+		  </div>
+		   <div class="form-group">
+		    <label for="recipient-name" class="control-label">Confirme e-mail:</label>
+		    <input type="text" class="form-control" name="cemail" id="cemailId">
+		  </div>
+
+		  <div class="form-group">
+		    <label for="recipient-name" class="control-label">Senha:</label>
+		    <input type="password" class="form-control" name="password" id="passId">
+		  </div>
+		   <div class="form-group">
+		    <label for="recipient-name" class="control-label">Confirme senha:</label>
+		    <input type="password" class="form-control" name="cpassword" id="cpassId">
+		  </div>
+	       
+		  </div>
+		     <div class="modal-footer">
+		         <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+		         <button type="submit" class="btn btn-primary" onclick="return validateForm()">Registrar</button>
+		     </div>
+	       </form>
+	    </div>
+	  </div>
 </div>
 
+	<script>
+		
+		function validateForm() {
+
+		    var first_name  = document.getElementById('name').value;
+		    var last_name   = document.getElementById('surname').value;
+		    var email       = document.getElementById('emailId').value;
+		    var c_email     = document.getElementById('cemailId').value;
+		    var pass        = document.getElementById('passId').value;
+		    var c_pass      = document.getElementById('cpassId').value;
+		    var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+                       
+
+                   
+                    
+
+                    if(email != c_email){
+			$('#emailAlertBox').show();
+			return false;
+		    }
+
+		
+                    if(pass != c_pass){
+			$('#passAlertBox').show();
+			return false;
+		    }
+
+
+		    if (first_name == "" || 
+			last_name  == "" || 
+		        email      == "" || 
+                        c_email    == "" ||
+                        pass       == "" || 
+                        c_pass == "" ) {
+				
+				$('#allFieldAlertBox').show();
+				return false;
+		    }
+
+
+
+		     if( pattern.test(email) == false ){
+			$('#emailValidateAlertBox').show();
+			return false;
+		    }
+
+
+		}
+
+		
+        </script>
 
 	<!-- jQuery -->
 	<script src="static/js/jquery.min.js"></script>
