@@ -31,6 +31,12 @@ def contact():
 def login():
     return render_template('login.html')
 
+@app.route('/access')
+def access():
+    hashId = request.args.get('id')
+    print hashId
+    return render_template('index.html')
+
 @app.route('/dash')
 def dashBoard():
     if not session.get('logged_in'):
