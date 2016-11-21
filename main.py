@@ -33,8 +33,8 @@ def login():
 
 @app.route('/access')
 def access():
-    hashId = request.args.get('id')
-    print hashId
+    login = LoginController()
+    req = login.access(request)
     return render_template('index.html')
 
 @app.route('/dash')
