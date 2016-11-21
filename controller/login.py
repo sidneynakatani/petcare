@@ -34,11 +34,11 @@ class LoginController:
      def access(self, request):
 
         hashId = request.args.get('id')
-        host = '{0}/register'.format(os.getenv('HOST'))
+        host = '{0}/activate'.format(os.getenv('HOST'))
     
         if(os.getenv('HOST') == None):
              print  'Acesso local.'
-	     host = 'http://omegagls.herokuapp.com/register'
+	     host = 'http://omegagls.herokuapp.com/activate'
 
 	return requests.post(host, data={ 'hashId' : hashId } )
 	
