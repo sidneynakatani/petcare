@@ -81,35 +81,21 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Login</h3>
+                        <h3 class="panel-title">Esqueci minha senha</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="/auth" method="POST">
+                        <form role="form" action="/changePassword" method="POST">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="Digite seu e-mail" name="email" type="email" autofocus>
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Senha" name="password" type="password" value="">
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Lembre-me
-                                    </label>
-                                </div>
+                                
                                 <div align="center">
-                                <button type="submit" class="btn btn-primary btn-lg" style="width:145px">Entrar</button>
-                                <button type="button" 
-					class="btn btn-primary btn-lg"
-                                        data-toggle="modal" 
-					data-target="#exampleModal" 
-					data-whatever="@mdo">Registrar</button>
+                                <button type="submit" class="btn btn-primary btn-lg" style="width:145px">Enviar</button>
+                                
 				</div>
 
-                                <div align="center">
-				     <br>
-				      <a href="/forgot">Esqueci minha senha.</a>
-                                </div>
+                               
                             </fieldset>
                         </form>
                     </div>

@@ -5,6 +5,7 @@ import requests
 import json
 from flask import render_template, Flask, request, session, flash
 from controller.login import LoginController
+from controller.forgotPassword import ForgotPassController
 
 
 app = Flask(__name__)
@@ -26,10 +27,13 @@ def about():
 def contact():
     return render_template('contact.html')
 
-
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+@app.route('/forgot')
+def forgot():
+    return render_template('forgotPass.html')
 
 @app.route('/access')
 def access():
@@ -93,16 +97,19 @@ def auth():
 
 @app.route('/register', methods=['POST'])
 def register():
-    
     login = LoginController()
     req = login.register(request)
-
-    #FIXME Verify why dont work
-    #response = json.loads(req.text)
-    #status = response['status']
-    #print status
-
     return render_template('login.html')   
+
+
+
+@app.route('/changePassword', methods=['POST'])
+def changePassword():
+    changePass = ForgotPassController()
+    req = changePass.change(request)
+    return render_template('index.html')
+
+
 
 @app.route("/logout")
 def logout():
