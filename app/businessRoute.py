@@ -31,13 +31,16 @@ def auth():
     else:
         flash('wrong password!')
 
-    return login()
+    return render_template('login.html')
+
+
 
 @app.route('/register', methods=['POST'])
 def register():
     login = LoginController()
     req = login.register(request)
     return render_template('login.html')   
+
 
 
 
@@ -54,10 +57,6 @@ def logout():
     session['logged_in'] = False
     return index()
 
-
-
-def login():
-    return render_template('login.html')
 
 def index():
     return render_template('index.html')
