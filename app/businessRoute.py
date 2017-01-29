@@ -16,6 +16,7 @@ def access():
 
 @app.route('/auth', methods=['POST'])
 def auth():
+    error = None
     
     login = LoginController()
     req = login.auth(request)
@@ -29,9 +30,9 @@ def auth():
         session['logged_name'] = name
 	return render_template('dash.html', name = name)
     else:
-        flash('wrong password!')
+        error = 'Login ou Senha invalidos'
 
-    return render_template('login.html')
+    return render_template('login.html', error = error)
 
 
 
