@@ -18,7 +18,7 @@ class ForgotPassController:
 
      def update(self, request):
 
-        email  = request.form['email']
+        password  = request.form['pass']
         hashId = request.form['hash']
         host = '{0}/forgotPass'.format(os.getenv('HOST'))
     
@@ -26,7 +26,7 @@ class ForgotPassController:
              print  'Acesso local.'
 	     host = 'http://omegagls.herokuapp.com/forgotPass'
 
-	request = requests.put(host, data={ 'email' : email, 'hash' : hashId } )
+	request = requests.put(host, data={ 'password' : password, 'hash' : hashId } )
         response = json.loads(request.text)
         updateStatus = response['updated']
         
