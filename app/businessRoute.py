@@ -42,14 +42,26 @@ def register():
     return render_template('login.html')   
 
 
-
-
 @app.route('/forgotPass', methods=['POST'])
 def forgotPass():
     changePass = ForgotPassController()
     req = changePass.change(request)
     return render_template('index.html')
 
+@app.route('/validatePassword', methods=['POST'])
+def validatePassword():
+    password = ForgotPassController()
+    updated = password.update(request)
+
+    if updated:
+         session['logged_in'] = True
+         session['logged_name'] = 'Update Test...'
+         return render_template('dash.html', name = 'Update test')
+
+    else:
+         print 'Nao foi possivel atualizar registro.'
+
+    return render_template('index.html')
 
 
 @app.route("/logout")

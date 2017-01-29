@@ -1,4 +1,4 @@
-import requests, os
+import requests, os, json
 
 
 class ForgotPassController:
@@ -16,15 +16,19 @@ class ForgotPassController:
 	return requests.post(host, data={ 'email' : email } )
 
 
-     #criar fluxo
-     def access(self, request):
+     def update(self, request):
 
-        email = request.form['email']
+        email  = request.form['email']
+        hashId = request.form['hash']
         host = '{0}/forgotPass'.format(os.getenv('HOST'))
     
         if(os.getenv('HOST') == None):
              print  'Acesso local.'
 	     host = 'http://omegagls.herokuapp.com/forgotPass'
 
-	return requests.post(host, data={ 'email' : email } )
+	request = requests.put(host, data={ 'email' : email, 'hash' : hashId } )
+        response = json.loads(request.text)
+        updateStatus = response['updated']
+        
+        return updateStatus
 	
