@@ -47,7 +47,8 @@ def register():
 def forgotPass():
     changePass = ForgotPassController()
     req = changePass.change(request)
-    return render_template('index.html')
+    email = request.form['email']
+    return render_template('forgotPassRequested.html', email = email)
 
 @app.route('/validatePassword', methods=['POST'])
 def validatePassword():
@@ -61,8 +62,9 @@ def validatePassword():
 
     else:
          print 'Nao foi possivel atualizar registro.'
-
-    return render_template('index.html')
+         error = 'O token enviado ja foi utilizado'       
+  
+    return render_template('changePassword.html', error = error)
 
 
 @app.route("/logout")

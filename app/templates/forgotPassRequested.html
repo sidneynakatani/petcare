@@ -13,7 +13,18 @@
 	<meta name="keywords" content="Pets finder" />
 	<meta name="author" content="PetsFinder" />
 
- 
+  
+
+  <!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
@@ -31,39 +42,13 @@
 	<link rel="stylesheet" href="static/css/style.css">
 	<!-- Modernizr JS -->
 	<script src="static/js/modernizr-2.6.2.min.js"></script>
-
-        <!-- Bootstrap Core CSS -->
-        <link href="static/css/bootstrap.min.css" rel="stylesheet">
-        <!-- MetisMenu CSS -->
-        <link href="static/css/metisMenu.min.css" rel="stylesheet">
-        <!-- Custom CSS -->
-        <link href="static/css/sb-admin-2.css" rel="stylesheet">
-        <!-- Custom Fonts -->
-        <link href="static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
-	<script src="static/static/js/respond.min.js"></script>
+	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
-        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-        <script>
-    
- 
-	    $( window ).on( "load", function() {
-		var href = window.location.href;
-		var reg = new RegExp( '[?&]' + 'id' + '=([^&#]*)', 'i' );
-		var string = reg.exec(href);
-		var hash = string ? string[1] : null;
-		document.getElementById("hashId").value = hash;
-		
-	    });
-
-    	</script>
 
 	</head>
 	<body>
-	
-	
 		
 	<div id="fh5co-offcanvass">
 		<a href="#" class="fh5co-offcanvass-close js-fh5co-offcanvass-close">Menu <i class="icon-cross"></i> </a>
@@ -91,54 +76,21 @@
 			</div>
 		</div>
 	</header>
+	<!-- END .header -->
 	
+	
+	<div id="fh5co-main">
+		<div class="container">
 
-	 <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Digite a nova senha</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form role="form" action="/validatePassword" method="POST">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Digite sua nova senha" name="pass" type="password" autofocus>
-                                </div>
-
-				<div class="form-group">
-                                    <input class="form-control" placeholder="Redigite sua nova senha" name="password" type="password" autofocus>
-                                </div>
-
-				<input type="hidden" name="hash" id="hashId">
-                                
-                                <div align="center">
-                                <button type="submit" class="btn btn-primary btn-lg" style="width:145px">Enviar</button>
-                                
-				</div>
-
-                               
-                            </fieldset>
-                        </form>
-
-			<div align="center" style="color:red">
-				{% if error %}
-					<br>
-	      				<p><strong>Aviso: </strong> {{ error }}
-	     		        {% endif %}
-                        </div>
-
-                    </div>
+                  <h4 align="center"> Sua solicitação de alteração ou nova senha foi enviada para seu e-mail: </h4>
+		  <h4 align="center"> <b> {{ email }} </b>  </h4>
+                  <h4 align="center"> 
+                        <br><br>
+			<a href="/" style="color:blue"><u> Voltar para a home. </u> </a>
+                  </h4>
                 </div>
-            </div>
-        </div>
-    </div>
+	</div>
 
-
-	
-	
-	
 	<footer id="fh5co-footer">
 		
 		<div class="container">
@@ -146,24 +98,14 @@
 				<div class="col-md-12 text-center">
 					<p class="fh5co-social-icons">
 						<a href="#"><i class="icon-twitter"   style="color:blue"></i></a>
-						<a href="#"><i class="icon-facebook"  style="color:blue"></i></a>
-						<a href="#"><i class="icon-instagram" style="color:brown"></i></a>
+			                        <a href="#"><i class="icon-facebook"  style="color:blue"></i></a>
+		                        	<a href="#"><i class="icon-instagram" style="color:brown"></i></a>
 					</p>
-					<p><small>&copy; Petsfinder. All Rights Reserved. 
-						<br>Designed by: 
-						<a href="https://petsfinder.herokuapp.com" 
-						   target="_blank">Petsfinder
-						</a> | Images by: 
-						<a href="http://pexels.com" 
-						   target="_blank">Pexels
-						</a> 
-					   </small>
-					</p>
+					<p><small>&copy; Petsfinder. All Rights Reserved. <br>Designed by: <a href="https://petsfinder.herokuapp.com" target="_blank">Petsfinder</a> | Images by: <a href="http://pexels.com" target="_blank">Pexels</a> </small></p>
 				</div>
 			</div>
 		</div>
 	</footer>
-
 
 
 	<!-- jQuery -->
@@ -180,13 +122,7 @@
 	<script src="static/js/salvattore.min.js"></script>
 	<!-- Main JS -->
 	<script src="static/js/main.js"></script>
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="static/js/metisMenu.min.js"></script>
-        <!-- Custom Theme JavaScript -->
-        <script src="static/js/sb-admin-2.js"></script>
 
-	
-	    
 	
 
 	
