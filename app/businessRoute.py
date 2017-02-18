@@ -4,7 +4,8 @@ import json
 from flask import render_template, Flask, request, session, flash
 from controller.login import LoginController
 from controller.forgotPassword import ForgotPassController
-
+from controller.image import ImageController
+from dto.user import User
 
 @app.route('/access')
 def access():
@@ -53,12 +54,13 @@ def forgotPass():
 @app.route('/validatePassword', methods=['POST'])
 def validatePassword():
     password = ForgotPassController()
-    updated = password.update(request)
+    user = password.update(request)
 
-    if updated:
+
+    if user.status:
          session['logged_in'] = True
-         session['logged_name'] = 'Update Test...'
-         return render_template('dash.html', name = 'Update test')
+         session['logged_name'] = user.name
+         return render_template('dash.html', name = user.name)
 
     else:
          print 'Nao foi possivel atualizar registro.'
@@ -66,6 +68,11 @@ def validatePassword():
   
     return render_template('changePassword.html', error = error)
 
+@app.route('/upload', methods=['POST'])
+def upload():
+    image = ImageController()
+    req = image.upload(request)
+    return render_template('add.html')
 
 @app.route("/logout")
 def logout():

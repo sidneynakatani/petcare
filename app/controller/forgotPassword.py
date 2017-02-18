@@ -1,5 +1,5 @@
 import requests, os, json
-
+from app.dto.user import User
 
 class ForgotPassController:
 
@@ -29,6 +29,9 @@ class ForgotPassController:
 	request = requests.put(host, data={ 'password' : password, 'hash' : hashId } )
         response = json.loads(request.text)
         updateStatus = response['updated']
+        name =  response['name']
+
+	usr = User(name, updateStatus)
         
-        return updateStatus
+        return usr
 	

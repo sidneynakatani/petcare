@@ -170,21 +170,23 @@
                     </div>
                 </div>
 
-		<div class="col-lg-6">
+ 	 <form method="POST" enctype="multipart/form-data" action="/upload">
 
+		  <div class="col-lg-6">
 
-<div class="thumbnail">
-      <img src="static/images/img_28.jpg">
-      <div class="caption">
-        <h3>Foto do(a) seu/sua amigo(a):</h3>
-        <p><a href="#" class="btn btn-primary" role="button">Selecionar uma foto</a></p>
-      </div>
-    </div>
-
-
-           	      
-   		    	             
-	        </div>
+		       <div class="thumbnail">
+			      <img src="static/images/img_28.jpg" id="blah">
+			      <div class="caption">
+		
+				     
+				      <h3>Foto do(a) seu/sua amigo(a):</h3>
+			 	      <input type="file" name="photo" id="imgInp"/>
+				     
+				      
+			       
+			      </div>
+			    </div>
+		     </div>
                	    
 			 
 		<div class="col-lg-6">
@@ -201,8 +203,9 @@
 	
 		     <div class="form-group">
 						  
-                        <label> Status </label>
+                       
 			<div class="dropdown">
+                          <label> Status: </label>
 			  <button class="btn btn-default dropdown-toggle" 
 				  type="button" 
 				  data-toggle="dropdown" 
@@ -221,15 +224,15 @@
 		      </div>
 
 		       <div class="form-group">
-			    </br></br></br></br></br></br>
-			    <button type="submit" class="btn btn-primary btn-lg" style="width:145px">Adicionar</button>
+			    </br></br></br></br></br>
+			    
                             <button type="reset"  class="btn btn-default btn-lg">Cancelar</button>
-                           
+                            <button type="submit" class="btn btn-primary btn-lg" style="width:145px">Enviar</button>
 		       </div>	                
 	             
 	        </div>
 
-
+           </form>
 		     
                 </div>
                 <!-- /.row -->
@@ -253,6 +256,27 @@
     <script src="static/js/plugins/morris/raphael.min.js"></script>
     <script src="static/js/plugins/morris/morris.min.js"></script>
     <script src="static/js/plugins/morris/morris-data.js"></script>
+
+    <script>
+
+	function readURL(input) {
+
+	    if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function (e) {
+		    $('#blah').attr('src', e.target.result);
+		}
+
+		reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	$("#imgInp").change(function(){
+	    readURL(this);
+	});
+
+   </script>
 
 </body>
 
