@@ -191,45 +191,83 @@
 			 
 		<div class="col-lg-6">
            	      
-   		     <div class="form-group">
-		          <label> Nome </label>
-		          <input class="form-control">	                
-		     </div>	
+   		     <div class="row">
+			  <div class="col-md-6">
+				<label> Nome </label>
+				<input class="form-control">	  
+		          </div>
+			  <div class="col-md-6">
+ 			        <label> Espécie </label>
+		                <input class="form-control">		
+			  </div>
+		     </div>
+ 
+                     <div><p></p></div>
 
-		      <div class="form-group">
-		          <label> Espécie </label>
+		     <div class="form-group">
+		          <label> Endereco </label>
 		          <input class="form-control">				                
 		     </div>
 	
-		     <div class="form-group">
-						  
-                       
-			<div class="dropdown">
-                          <label> Status: </label>
-			  <button class="btn btn-default dropdown-toggle" 
-				  type="button" 
-				  data-toggle="dropdown" 
-			          aria-haspopup="true" 
-                                  aria-expanded="true"
-				  style="width:145px">
-			          Perdido
-			    <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-			    <li>Encontado</li>
-			    <li>Doação</li>
-			    <li>Outros</li>
-			  </ul>
-			</div>		     
-		      </div>
 
-		       <div class="form-group">
-			    </br></br></br></br></br>
-			    
-                            <button type="reset"  class="btn btn-default btn-lg">Cancelar</button>
-                            <button type="submit" class="btn btn-primary btn-lg" style="width:145px">Enviar</button>
-		       </div>	                
-	             
+		     <div><p></p></div>
+
+		     <div class="row">
+			  <div class="col-md-6">
+				<label> Bairro </label>
+				<input class="form-control">	  
+		          </div>
+			  <div class="col-md-6">
+ 			        <label> Cidade </label>
+		                <input class="form-control">		
+			  </div>
+		     </div>
+
+		     <div><p></p></div>
+
+		     <div class="row">
+			  <div class="col-md-4">
+				<label> Estado </label>
+		                <input class="form-control">
+                          </div>
+			  <div class="col-md-4">
+				<label> Pais </label>
+		                <input class="form-control">
+
+                          </div>
+                          <div class="col-md-4">
+				<label> Cep </label>
+		                <input class="form-control">
+                          </div>
+	             </div>
+
+		     <div><p></p></div>
+
+
+		      <div class="row">
+			  <div class="col-md-2">
+			        <label> Status </label>
+				<select>
+				  <option value="P">Perdido</option>
+				  <option value="E">Encontrado</option>
+				  <option value="D">Doacao</option>
+				  <option value="A">Adocao</option>
+				</select>  
+		          
+			  </div>
+			   <div><br></div>
+                          
+		     </div>
+
+		     <div><p></p></div>
+
+                      <div class="form-group" align="rigth">
+				
+ 			    <button type="reset"  class="btn btn-default btn-sm">Cancelar</button>
+                            <button type="submit" class="btn btn-primary btn-sm" style="width:145px">Enviar</button>
+	              </div>
+
+		    
 	        </div>
 
            </form>
