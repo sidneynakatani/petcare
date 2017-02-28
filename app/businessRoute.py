@@ -25,10 +25,12 @@ def auth():
     response = json.loads(req.text)
     auth = response['auth']
     name = response['name']
-
+    code = response['code']
+    
     if auth:
         session['logged_in'] = True
         session['logged_name'] = name
+        session['logged_code'] = code
 	return render_template('dash.html', name = name)
     else:
         error = 'Login ou Senha invalidos'
