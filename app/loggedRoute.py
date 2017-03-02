@@ -49,8 +49,8 @@ def message():
 def index():
     return render_template('login.html')
 
-def getPets(request):
+def getPets(user_code):
     pet = PetController()
-    return pet.getPets(request)
+    return pet.getPets(user_code)
 
 

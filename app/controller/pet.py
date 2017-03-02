@@ -5,7 +5,7 @@ class PetController:
 
      def getPets(self, user_code):
 
-        host = '{0}/login'.format(os.getenv('HOST'))
+        host = '{0}/pets'.format(os.getenv('HOST'))
     
         if(os.getenv('HOST') == None):
              print  'Acesso local.'

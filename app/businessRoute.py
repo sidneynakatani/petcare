@@ -92,7 +92,6 @@ def index():
     return render_template('index.html')
 
 def getPets(user_code):
-    print user_code
     pet = PetController()
     return pet.getPets(user_code)
 
