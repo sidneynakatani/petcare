@@ -5,6 +5,7 @@ from flask import render_template, Flask, request, session, flash
 from controller.login import LoginController
 from controller.forgotPassword import ForgotPassController
 from controller.image import ImageController
+from controller.pet import PetController
 from dto.user import User
 
 @app.route('/access')
@@ -31,7 +32,12 @@ def auth():
         session['logged_in'] = True
         session['logged_name'] = name
         session['logged_code'] = code
-	return render_template('dash.html', name = name)
+
+        req = getPets(code)
+        list_pets = json.loads(req.text)
+        print list_pets
+
+	return render_template('dash.html', name = name, list_pets = list_pets)
     else:
         error = 'Login ou Senha invalidos'
 
@@ -84,6 +90,10 @@ def logout():
 
 def index():
     return render_template('index.html')
+
+def getPets(request):
+    pet = PetController()
+    return pet.getPets(request)
 
 
 
