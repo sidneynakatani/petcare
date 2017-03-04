@@ -1,6 +1,8 @@
 from app import app
 from flask import render_template, Flask, request, session
 from controller.pet import PetController
+from controller.user import UserController
+
 import json
 
 
@@ -22,7 +24,12 @@ def profile():
     if not session.get('logged_in'):
     	return index()
 
-    return render_template('profile.html')
+    code = session['logged_code']
+    name = session['logged_name']
+    req = getUser(code)
+    user = json.loads(req.text)
+
+    return render_template('profile.html', name = name, user = user)
 
 @app.route('/add')
 def add():
@@ -49,8 +56,16 @@ def message():
 def index():
     return render_template('login.html')
 
+
 def getPets(user_code):
     pet = PetController()
     return pet.getPets(user_code)
+
+
+def getUser(user_code):
+    user = UserController()
+    return user.getUser(user_code)
+
+
 
 
