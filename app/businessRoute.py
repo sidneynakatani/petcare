@@ -6,6 +6,7 @@ from controller.login import LoginController
 from controller.forgotPassword import ForgotPassController
 from controller.image import ImageController
 from controller.pet import PetController
+from controller.user import UserController
 from dto.user import User
 
 @app.route('/access')
@@ -24,6 +25,7 @@ def auth():
     req = login.auth(request)
 
     response = json.loads(req.text)
+    print response
     auth = response['auth']
     name = response['name']
     code = response['code']
@@ -82,6 +84,19 @@ def upload():
     req = image.upload(request)
     return render_template('add.html')
 
+@app.route('/updateUser', methods=['POST'])
+def updateUser(): 
+    usr = UserController()
+    req = usr.updateUser(request)
+
+    code = session['logged_code']
+    name = session['logged_name']
+    req = getUser(code)
+    user = json.loads(req.text)
+
+    return render_template('profile.html', name = name, user = user)
+
+
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
@@ -95,6 +110,8 @@ def getPets(user_code):
     pet = PetController()
     return pet.getPets(user_code)
 
-
+def getUser(user_code):
+    user = UserController()
+    return user.getUser(user_code)
 
 

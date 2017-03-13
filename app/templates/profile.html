@@ -171,7 +171,7 @@
                     </div>
                 </div>
                	    
-			 <form role="form">
+			 <form role="form" method="POST" action="/updateUser">
 
 				 <div class="col-lg-6">
 					    <label> Nome </label>
@@ -205,7 +205,7 @@
 				                <span class="input-group-addon">
 							<input type="checkbox" aria-label="..." id="cb3">
 						</span>
-				                <input class="form-control" id="s1" disabled>
+				                <input class="form-control" id="s1" name="password" disabled>
 				                
 				            </div>
 
@@ -240,13 +240,17 @@
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h4 class="modal-title">Atencao</h4>
+							<h4 class="modal-title">Aten&ccedil;&atilde;o</h4>
 						      </div>
 						      <div class="modal-body">
-							<p>Lembre-se que seu E-mail e seu login de acesso</p>
+							<p>Lembre-se que seu E-mail &eacute; seu login de acesso</p>
 						      </div>
 						      <div class="modal-footer">
-							<button onclick="cancel()" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+							<button onclick="cancel()"
+							        type="button" 
+								class="btn btn-default" 
+								data-dismiss="modal">Cancelar
+							</button>
 							<button onclick="confirm()" type="button" class="btn btn-primary">Alterar</button>
 						      </div>
 						    </div><!-- /.modal-content -->
@@ -254,6 +258,8 @@
 						</div><!-- /.modal -->
 					  
 				            </div>
+
+					   
 
 
 				  <div class="col-lg-6">
@@ -306,6 +312,41 @@
 
     </div>
     <!-- /#wrapper -->
+	                  <div class="modal fade" tabindex="-1" role="dialog" id="mod02">
+				<div class="modal-dialog" role="document">
+
+
+					<div class="modal-content">
+					     <div class="modal-header">
+						 <button type="button" 
+								class="close" 
+								data-dismiss="modal" 
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title">Aten&ccedil;&atilde;o</h4>
+						      </div>
+						      <div class="modal-body">
+							<p>Deseja realmente alterar sua senha de acesso?</p>
+						      </div>
+						      <div class="modal-footer">
+							<button onclick="cancelEmailBt()" 
+								type="button" 
+								class="btn btn-default" 
+								data-dismiss="modal">Cancelar
+							</button>
+							<button onclick="confirmEmailBt()" 
+								type="button" 
+								class="btn btn-primary">Alterar
+							</button>	
+						 </div>
+				              </div><!-- /.modal-content -->
+				        </div><!-- /.modal-dialog -->
+						    
+				</div><!-- /.modal -->
+					  
+		          </div>
+                             
 
     <!-- jQuery -->
     <script src="static/js/jquery.js"></script>
@@ -333,6 +374,20 @@
 		$('#mod01').modal('hide');
 	}
 
+	function confirmEmailBt() {
+    		$("#s1").prop('disabled', false);
+		$("#s2").prop('disabled', false);
+		$("#cb3").prop("checked", true);
+		$('#mod02').modal('hide');
+	}
+
+	function cancelEmailBt() {
+    		$("#s1").prop('disabled', true );
+                $("#s2").prop('disabled', true );
+		$("#cb3").prop("checked", false);
+		$('#mod02').modal('hide');
+	}
+
 	$("#cb1").change(function() {
     		if(this.checked) {
         		$("#n1").prop('disabled', false);
@@ -346,6 +401,7 @@
 	 $("#cb2").change(function() {
     		if(this.checked) {
                         $('#mod01').modal('show')  
+			$("#cb2").prop("checked", false);
     		}else{
 			$("#e1").prop('disabled', true );
                         $("#e2").prop('disabled', true );
@@ -354,8 +410,8 @@
 
 	$("#cb3").change(function() {
     		if(this.checked) {
-        		$("#s1").prop('disabled', false);
-			$("#s2").prop('disabled', false);
+        		$('#mod02').modal('show')  
+			$("#cb3").prop("checked", false);
     		}else{
 			$("#s1").prop('disabled', true );
                         $("#s2").prop('disabled', true );
