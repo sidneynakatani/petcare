@@ -36,21 +36,27 @@ def add():
     if not session.get('logged_in'):
     	return index()
 
-    return render_template('add.html')
+    name = session['logged_name']
+
+    return render_template('add.html', name = name)
 
 @app.route('/config')
 def config():
     if not session.get('logged_in'):
     	return index()
 
-    return render_template('config.html')
+    name = session['logged_name']
+
+    return render_template('config.html', name = name)
 
 @app.route('/message')
 def message():
     if not session.get('logged_in'):
     	return index()
 
-    return render_template('message.html')
+    name = session['logged_name']
+
+    return render_template('message.html', name = name)
 
 
 def index():
