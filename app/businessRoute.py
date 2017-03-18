@@ -90,9 +90,11 @@ def updateUser():
     req = usr.updateUser(request)
 
     code = session['logged_code']
-    name = session['logged_name']
     req = getUser(code)
     user = json.loads(req.text)
+
+    name = user['first_name']
+    session['logged_name'] = name
 
     return render_template('profile.html', name = name, user = user)
 
