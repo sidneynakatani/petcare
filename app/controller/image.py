@@ -26,9 +26,9 @@ class ImageController:
           apiSecret = os.getenv('API_SECRET')
           cloudName = os.getenv('CLOUD_NAME')
    
-          
+          image_id = str(calendar.timegm(time.gmtime()))
           cloudinary.config(cloud_name = cloudName, api_key = apiKey, api_secret = apiSecret)
-          print cloudinary.uploader.upload(photo, public_id = 'sample_id')
+          print cloudinary.uploader.upload(photo, public_id = image_id)
 
 	  host = '{0}/pet'.format(os.getenv('HOST'))
 
@@ -36,7 +36,7 @@ class ImageController:
                print  'Acesso local.'
                host = 'http://omegagls.herokuapp.com/pet'
 
-          requests.post(host, data={ 'userId':code, 'imgId':'sample_id', 'name':name, 'kind':kind, 'status':status, 'address':address, 'quarter':quarter, 'city':city, 'state':state, 'country':country, 'zipCode':zipcode} )
+          requests.post(host, data={ 'userId':code, 'imgId':image_id, 'name':name, 'kind':kind, 'status':status, 'address':address, 'quarter':quarter, 'city':city, 'state':state, 'country':country, 'zipCode':zipcode} )
 
 
 
