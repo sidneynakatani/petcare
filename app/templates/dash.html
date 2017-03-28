@@ -30,9 +30,42 @@
         <script src="https://oss.maxcdn.com/libs/respond.static/js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
+
 </head>
 
 <body>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Editar</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">Nome:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">Especie:</label>
+            <input type="text" class="form-control" id="recipient-kind">
+          </div>
+	  <div class="form-group">
+            <label for="message-text" class="control-label">Status:</label>
+            <input type="text" class="form-control" id="recipient-status">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Alterar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <div id="wrapper">
 
@@ -183,7 +216,7 @@
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
+                                    <table class="table table-bordered table-hover table-striped" id="myTable">
                                         <thead>
                                             <tr>
                                                 <th>Identificação#</th>
@@ -191,6 +224,7 @@
                                                 <th>Nome</th>
                                                 <th>Espécie animal</th>
                                                 <th>Status</th>
+						<th>Alterar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -204,6 +238,7 @@
                                                    <td> {{ value.pet_name }}</td>
                                                    <td> {{ value.pet_kind }}</td>
 						   <td> {{ value.status }} </td>
+						   <td><button class="btnSelect">Alterar</button></td>
                                                 </tr>
 						
 					    {% endfor %}
@@ -245,6 +280,30 @@
     <script src="static/js/plugins/morris/raphael.min.js"></script>
     <script src="static/js/plugins/morris/morris.min.js"></script>
     <script src="static/js/plugins/morris/morris-data.js"></script>
+
+<script>
+
+
+
+    // code to read selected table row cell data (values).
+    $(".btnSelect").click(function() {
+         
+         // get the current row
+         var currentRow=$(this).closest("tr"); 
+         
+         var name   = currentRow.find("td:eq(2)").text(); // get current row 1st TD value
+         var kind   = currentRow.find("td:eq(3)").text(); // get current row 2nd TD
+         var status = currentRow.find("td:eq(4)").text(); // get current row 3rd TD
+         
+
+	 document.getElementById('recipient-name').value   = name;
+	 document.getElementById('recipient-kind').value   = kind;
+	 document.getElementById('recipient-status').value = status;
+         $('#exampleModal').modal('show');
+         
+    });
+
+</script>
 
 </body>
 
