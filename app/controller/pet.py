@@ -16,7 +16,7 @@ class PetController:
 
      def updatePets(self, request):
 
-        host = '{0}/pets'.format(os.getenv('HOST'))
+        host = '{0}/pet'.format(os.getenv('HOST'))
     
         if(os.getenv('HOST') == None):
              print  'Acesso local.'
