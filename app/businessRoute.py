@@ -37,7 +37,7 @@ def auth():
 
         req = getPets(code)
         list_pets = json.loads(req.text)
-        print list_pets
+
 
 	return render_template('dash.html', name = name, list_pets = list_pets)
     else:
@@ -84,6 +84,7 @@ def upload():
     req = image.upload(request)
     return render_template('add.html')
 
+
 @app.route('/updateUser', methods=['POST'])
 def updateUser(): 
     usr = UserController()
@@ -97,6 +98,21 @@ def updateUser():
     session['logged_name'] = name
 
     return render_template('profile.html', name = name, user = user)
+
+
+@app.route('/updatePets', methods=['POST'])
+def updatePets(): 
+    pet = PetController()
+    req = pet.updatePets(request)
+    print req.text
+    
+    name = session['logged_name']
+    code = session['logged_code']
+
+    req = getPets(code)
+    list_pets = json.loads(req.text)
+    
+    return render_template('dash.html', name = name, list_pets = list_pets)
 
 
 @app.route("/logout")

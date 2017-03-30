@@ -44,25 +44,28 @@
         <h4 class="modal-title" id="exampleModalLabel">Editar</h4>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Nome:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">Especie:</label>
-            <input type="text" class="form-control" id="recipient-kind">
-          </div>
-	  <div class="form-group">
-            <label for="message-text" class="control-label">Status:</label>
-            <input type="text" class="form-control" id="recipient-status">
-          </div>
+        <form action="/updatePets" method="POST">
+
+		  <input type="hidden" id="pet-id" name='petId'>
+		  <div class="form-group">
+		    <label for="recipient-name" class="control-label">Nome:</label>
+		    <input type="text" class="form-control" id="recipient-name" name="name">
+		  </div>
+		  <div class="form-group">
+		    <label for="message-text" class="control-label">Especie:</label>
+		    <input type="text" class="form-control" id="recipient-kind" name="kind">
+		  </div>
+		  <div class="form-group">
+		    <label for="message-text" class="control-label">Status:</label>
+		    <input type="text" class="form-control" id="recipient-status" name="status">
+		  </div>
+        
+       </div>
+	          <div class="modal-footer">
+		     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+		     <button type="submit" class="btn btn-primary">Alterar</button>
+	          </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Alterar</button>
-      </div>
     </div>
   </div>
 </div>
@@ -291,11 +294,12 @@
          // get the current row
          var currentRow=$(this).closest("tr"); 
          
-         var name   = currentRow.find("td:eq(2)").text(); // get current row 1st TD value
-         var kind   = currentRow.find("td:eq(3)").text(); // get current row 2nd TD
-         var status = currentRow.find("td:eq(4)").text(); // get current row 3rd TD
+         var id     = currentRow.find("td:eq(0)").text(); 
+         var name   = currentRow.find("td:eq(2)").text(); 
+         var kind   = currentRow.find("td:eq(3)").text(); 
+         var status = currentRow.find("td:eq(4)").text(); 
          
-
+	 document.getElementById('pet-id').value   = id;
 	 document.getElementById('recipient-name').value   = name;
 	 document.getElementById('recipient-kind').value   = kind;
 	 document.getElementById('recipient-status').value = status;
