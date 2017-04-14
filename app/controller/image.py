@@ -26,9 +26,10 @@ class ImageController:
           apiSecret = os.getenv('API_SECRET')
           cloudName = os.getenv('CLOUD_NAME')
    
+	  pet_tags = '{0},{1},{2},{3},{4},{5}'.format(name, kind, address, city, country, status)
           image_id = str(calendar.timegm(time.gmtime()))
           cloudinary.config(cloud_name = cloudName, api_key = apiKey, api_secret = apiSecret)
-          print cloudinary.uploader.upload(photo, public_id = image_id)
+          cloudinary.uploader.upload(photo, public_id = image_id, tags = pet_tags)
 
 	  host = '{0}/pet'.format(os.getenv('HOST'))
 
