@@ -122,7 +122,9 @@ def logout():
 
 
 def index():
-    return render_template('index.html')
+    image  = ImageController()
+    images = image.getImages(request)
+    return render_template('index.html', images = images)
 
 def getPets(user_code):
     pet = PetController()
