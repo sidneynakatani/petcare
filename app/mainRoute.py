@@ -1,10 +1,12 @@
 from app import app
-from flask import render_template
+from flask import render_template, request
+from controller.image import ImageController
 
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    images = getImages()
+    return render_template('index.html', images = images)
 
 @app.route('/about')
 def about():
@@ -25,3 +27,10 @@ def forgot():
 @app.route('/changePassword')
 def changePassword():
     return render_template('changePassword.html')
+
+
+def getImages():
+
+     image = ImageController()
+     return image.getImages(request)
+
