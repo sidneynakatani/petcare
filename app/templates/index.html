@@ -100,7 +100,15 @@
 				Nome: {{ list[0] }} </br>
 				Especie: {{ list[1] }} </br>
                                 Cidade: {{ list[2] }} </br>
-                                Situacao: {{ list[3] }}
+                                Situacao: {% if list[3] == 'A' %}
+					    {{ 'Adocao' }}
+					  {% endif %}
+					  {% if list[3] == 'P' %}
+					    {{ 'Perdido' }}
+					  {% endif %}
+					  {% if list[3] == 'E' %}
+					     {{ 'Encontrado' }}
+					  {% endif %}
 			</div>
         	</div>
 
