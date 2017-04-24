@@ -104,7 +104,9 @@ def updateUser():
 def updatePets(): 
     pet = PetController()
     req = pet.updatePets(request)
-    print req.text
+
+    image = ImageController()
+    image.updateImageStatus(request)
     
     name = session['logged_name']
     code = session['logged_code']

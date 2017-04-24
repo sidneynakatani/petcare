@@ -54,6 +54,24 @@ class ImageController:
 	  data = json.dumps(data, indent=3, sort_keys=True)
           return json.loads(data)
 
+     def updateImageStatus(self, request):
+
+	  name    = request.form['name']
+          kind    = request.form['kind']
+          city    = request.form['city']
+          status  = request.form['status']
+          image   = request.form['image_id']
+          current_status = request.form['current_status']
+
+	  currentStatus = '{0}/{1}/{2}/{3}/{4}'.format(name.strip(), kind.strip(), city.strip(), current_status.strip(), image)
+          newStatus     = '{0}/{1}/{2}/{3}/{4}'.format(name.strip(), kind.strip(), city.strip(), status, image)
+          
+          apiKey = os.getenv('API_KEY') 
+          apiSecret = os.getenv('API_SECRET')
+          cloudName = os.getenv('CLOUD_NAME')
+
+	  cloudinary.config(cloud_name = cloudName, api_key = apiKey, api_secret = apiSecret)
+          cloudinary.uploader.rename(currentStatus, newStatus)
 
 
 
