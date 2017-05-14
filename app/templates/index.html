@@ -57,6 +57,27 @@
                         <li><a href="/login">Login</a></li>
 			<li><a href="/about">Sobre</a></li>
 			<li><a href="/contact">Contato</a></li>
+                        
+			<li>
+			   <div style="margin-top: 25px" >
+			     <b>Pesquisar por:</b>
+			   </div>
+			</li>
+			
+			<form action="/find" method="POST">
+			   <li>
+			      <div style="margin-top: 7px">Cidade:</div>
+			   </li>
+
+		           <li><input type="text" name="city"></input></li>
+			   <li>Espécie:</li>
+		           <li><input type="text" name="kind"></input></li>
+
+			   <li>	
+			     <button type="submit" style="margin-top: 5px">Pesquisar</button>	
+			   </li>
+			</form>
+		         	        
 		</ul>
 		<h3 class="fh5co-lead">Connect with us</h3>
 		<p class="fh5co-social-icons">
@@ -89,30 +110,66 @@
 
 		{% for value in images['resources'] %}
 
+		    {% if filter_enabled %}
+			
+			{% if kind in value.tags %}
 		
-		<div class="item">
-        		<div class="animate-box">
-	        		<a href="{{ value.url }}" class="image-popup fh5co-board-img" title="Teste">
-				<img src="{{ value.url }}" alt="Teste"></a>
-        		</div>
-        		<div class="fh5co-desc">
-				{% set list = value.public_id.split('/') %}
-				Nome: {{ list[0] }} </br>
-				Especie: {{ list[1] }} </br>
-                                Cidade: {{ list[2] }} </br>
-                                Situacao: {% if list[3] == 'A' %}
-					    {{ 'Adocao' }}
-					  {% endif %}
-					  {% if list[3] == 'P' %}
-					    {{ 'Perdido' }}
-					  {% endif %}
-					  {% if list[3] == 'E' %}
-					     {{ 'Encontrado' }}
-					  {% endif %}
-			</div>
-        	</div>
+				<div class="item">
+					<div class="animate-box">
+						<a href="{{ value.url }}" class="image-popup fh5co-board-img" title="Teste">
+						<img src="{{ value.url }}" alt="Teste"></a>
+					</div>
+					<div class="fh5co-desc">
+				
 
-						
+							{% set list = value.public_id.split('/') %}
+							Nome: {{ list[0] }} </br>
+							Especie: {{ list[1] }} </br>
+						        Cidade: {{ list[2] }} </br>
+						        Situacao: {% if list[3] == 'A' %}
+								    {{ 'Adocao' }}
+								  {% endif %}
+								  {% if list[3] == 'P' %}
+								    {{ 'Perdido' }}
+								  {% endif %}
+								  {% if list[3] == 'E' %}
+								     {{ 'Encontrado' }}
+								  {% endif %}
+					      
+					</div>
+				</div>
+	
+			
+			{% endif %}
+
+		    {% else %}
+
+				<div class="item">
+					<div class="animate-box">
+						<a href="{{ value.url }}" class="image-popup fh5co-board-img" title="Teste">
+						<img src="{{ value.url }}" alt="Teste"></a>
+					</div>
+					<div class="fh5co-desc">
+				
+
+							{% set list = value.public_id.split('/') %}
+							Nome: {{ list[0] }} </br>
+							Especie: {{ list[1] }} </br>
+						        Cidade: {{ list[2] }} </br>
+						        Situacao: {% if list[3] == 'A' %}
+								    {{ 'Adocao' }}
+								  {% endif %}
+								  {% if list[3] == 'P' %}
+								    {{ 'Perdido' }}
+								  {% endif %}
+								  {% if list[3] == 'E' %}
+								     {{ 'Encontrado' }}
+								  {% endif %}
+					      
+					</div>
+			        </div>	
+
+		   {% endif %}								
 	        {% endfor %}
         	
 

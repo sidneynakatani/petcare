@@ -4,7 +4,7 @@ import cloudinary.uploader
 import cloudinary.api
 from flask import session
 
-
+import urllib
 
 class ImageController:
 
@@ -50,7 +50,7 @@ class ImageController:
           cloudName = os.getenv('CLOUD_NAME')
 
 	  cloudinary.config(cloud_name = cloudName, api_key = apiKey, api_secret = apiSecret)
-	  data = cloudinary.api.resources(max_results=50)
+	  data = cloudinary.api.resources(max_results=50, tags='True')
 	  data = json.dumps(data, indent=3, sort_keys=True)
           return json.loads(data)
 
@@ -72,6 +72,23 @@ class ImageController:
 
 	  cloudinary.config(cloud_name = cloudName, api_key = apiKey, api_secret = apiSecret)
           cloudinary.uploader.rename(currentStatus, newStatus)
+
+
+     def getImageByTag(self, request):
+           
+	  city    = request.form['city']
+	  tags =  urllib.quote(city.strip())
+       
+	  apiKey = os.getenv('API_KEY') 
+          apiSecret = os.getenv('API_SECRET')
+          cloudName = os.getenv('CLOUD_NAME')
+
+	  cloudinary.config(cloud_name = cloudName, api_key = apiKey, api_secret = apiSecret)
+          data = cloudinary.api.resources_by_tag(tags, tags='True')
+          data = json.dumps(data, indent=3, sort_keys=True)
+          return json.loads(data)  
+		  
+		  
 
 
 

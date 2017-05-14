@@ -6,7 +6,13 @@ from controller.image import ImageController
 @app.route("/")
 def index():
     images = getImages()
-    return render_template('index.html', images = images)
+    return render_template('index.html', images = images, filter_enabled = False)
+
+@app.route("/find", methods=['POST'])
+def find():
+    kind   = request.form['kind']
+    images = getImagesByTags()
+    return render_template('index.html', images = images, filter_enabled = True, kind = kind )
 
 @app.route('/about')
 def about():
@@ -30,7 +36,10 @@ def changePassword():
 
 
 def getImages():
-
      image = ImageController()
      return image.getImages(request)
+
+def getImagesByTags():
+     image = ImageController()
+     return image.getImageByTag(request)
 
