@@ -26,7 +26,7 @@ class ImageController:
           apiSecret = os.getenv('API_SECRET')
           cloudName = os.getenv('CLOUD_NAME')
    
-	  pet_tags = '{0},{1},{2},{3},{4},{5}'.format(name, kind, address, city, country, status)
+	  pet_tags = '^N_{0},^E_{1},^A_{2},^C_{3},^P_{4},^S_{5}'.format(name, kind, address, city, country, status)
           folder = '/{0}/{1}/{2}/{3}'.format(name, kind, city, status)
 
           image_id = str(calendar.timegm(time.gmtime()))
@@ -76,9 +76,9 @@ class ImageController:
 
      def getImageByTag(self, request):
            
-	  city    = request.form['city']
+	  city =  '^C_' + request.form['city'] 
 	  tags =  urllib.quote(city.strip())
-       
+         
 	  apiKey = os.getenv('API_KEY') 
           apiSecret = os.getenv('API_SECRET')
           cloudName = os.getenv('CLOUD_NAME')

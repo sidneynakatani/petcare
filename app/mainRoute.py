@@ -10,9 +10,9 @@ def index():
 
 @app.route("/find", methods=['POST'])
 def find():
-    kind   = request.form['kind']
+    kind   = '^E_' + request.form['kind']
     images = getImagesByTags()
-    return render_template('index.html', images = images, filter_enabled = True, kind = kind )
+    return render_template('index.html', images = images, filter_enabled = True, kind = kind.strip())
 
 @app.route('/about')
 def about():
