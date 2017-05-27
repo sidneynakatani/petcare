@@ -54,9 +54,8 @@
 		  <div class="form-group">
 		    <label for="message-text" class="control-label">Especie:</label>
 		    <input type="text" class="form-control"   id="recipient-kind" name="kind">
-		    <input type="hidden" class="form-control" id="recipient-city" name="city">
-		    <input type="hidden" class="form-control" id="recipient-image-id" name="image_id">
 		  </div>
+               
 		  <div class="form-group">
 		    <label for="message-text" class="control-label">Status:</label>
 		    <select style="width: 280px" id="statusCombo" name="status">
@@ -65,9 +64,13 @@
 		         <option value="A">Adocao</option>
 		    </select>
 		  </div>
-		    <input type="hidden" class="form-control" id="recipient-status" name="current_status">
-		    <input type="hidden" class="form-control" id="recipient-city" name="city">
+                    <input type="hidden" class="form-control" id="recipient-name2" name="current_name">
+		    <input type="hidden" class="form-control" id="recipient-kind2" name="current_kind">
+		    <input type="hidden" class="form-control" id="recipient-status"   name="current_status">
+		    <input type="hidden" class="form-control" id="recipient-city"     name="current_city">
 		    <input type="hidden" class="form-control" id="recipient-image-id" name="image_id">
+                    <input type="hidden" class="form-control" id="recipient-street"   name="current_street">
+		    <input type="hidden" class="form-control" id="recipient-country"  name="current_country">
         
        </div>
 	          <div class="modal-footer">
@@ -253,6 +256,8 @@
                                                    <td> {{ value.city }}</td>
 						   <td> {{ value.status }} </td>
                                                    <td style="display:none;">{{ value.image_id }}</td>
+                                                   <td style="display:none;">{{ value.street }}</td>
+						   <td style="display:none;">{{ value.country }}</td>
 						   <td><button class="btnSelect">Alterar</button></td>
                                                 </tr>
 						
@@ -312,13 +317,22 @@
 	 var city   = currentRow.find("td:eq(4)").text(); 
          var status = currentRow.find("td:eq(5)").text(); 
          var image  = currentRow.find("td:eq(6)").text(); 
+         var street = currentRow.find("td:eq(7)").text(); 
+         var country = currentRow.find("td:eq(8)").text(); 
          
 	 document.getElementById('pet-id').value   = id;
 	 document.getElementById('recipient-name').value   = name;
 	 document.getElementById('recipient-kind').value   = kind;
-         document.getElementById('recipient-city').value   = city;
-         document.getElementById('recipient-status').value   = status;
-         document.getElementById('recipient-image-id').value   = image;
+
+         document.getElementById('recipient-name2').value   = name;
+	 document.getElementById('recipient-kind2').value   = kind;
+        
+         document.getElementById('recipient-city').value      = city;
+         document.getElementById('recipient-status').value    = status;
+         document.getElementById('recipient-image-id').value  = image;
+
+	 document.getElementById('recipient-street').value    = street;
+         document.getElementById('recipient-country').value   = country;
 
          
 	 switch(status.trim()) {

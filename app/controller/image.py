@@ -6,7 +6,13 @@ from flask import session
 
 import urllib
 
+apiKey    = os.getenv('API_KEY') 
+apiSecret = os.getenv('API_SECRET')
+cloudName = os.getenv('CLOUD_NAME')
+
 class ImageController:
+
+     
 
      def upload(self, request):
 
@@ -22,9 +28,7 @@ class ImageController:
 	  code    = session['logged_code'] 
 	  photo   = request.files['photo']
 
-          apiKey = os.getenv('API_KEY') 
-          apiSecret = os.getenv('API_SECRET')
-          cloudName = os.getenv('CLOUD_NAME')
+       
    
 	  pet_tags = '^N_{0},^E_{1},^A_{2},^C_{3},^P_{4},^S_{5}'.format(name, kind, address, city, country, status)
           folder = '/{0}/{1}/{2}/{3}'.format(name, kind, city, status)
@@ -45,33 +49,33 @@ class ImageController:
 
      def getImages(self, request):
 
-          apiKey = os.getenv('API_KEY') 
-          apiSecret = os.getenv('API_SECRET')
-          cloudName = os.getenv('CLOUD_NAME')
-
 	  cloudinary.config(cloud_name = cloudName, api_key = apiKey, api_secret = apiSecret)
 	  data = cloudinary.api.resources(max_results=50, tags='True')
 	  data = json.dumps(data, indent=3, sort_keys=True)
           return json.loads(data)
 
      def updateImageStatus(self, request):
-
+          print "teste"
 	  name    = request.form['name']
           kind    = request.form['kind']
-          city    = request.form['city']
           status  = request.form['status']
           image   = request.form['image_id']
+
+          current_name   = request.form['current_name']
+          current_kind   = request.form['current_kind']
+          current_city   = request.form['current_city']
           current_status = request.form['current_status']
+          current_street   = request.form['current_street']
+          current_country  = request.form['current_country']
 
-	  currentStatus = '{0}/{1}/{2}/{3}/{4}'.format(name.strip(), kind.strip(), city.strip(), current_status.strip(), image)
-          newStatus     = '{0}/{1}/{2}/{3}/{4}'.format(name.strip(), kind.strip(), city.strip(), status, image)
+	  currentStatus = '{0}/{1}/{2}/{3}/{4}'.format(current_name.strip(), current_kind.strip(), current_city.strip(), current_status.strip(), image)
+          newStatus     = '{0}/{1}/{2}/{3}/{4}'.format(name.strip(), kind.strip(), current_city.strip(), status, image)
+          pet_tags      = "'^N_{0},^E_{1},^A_{2},^C_{3},^P_{4},^S_{5}'".format(name.strip(), kind.strip(), current_street.strip(), current_city.strip(), current_country.strip(), status.strip())
           
-          apiKey = os.getenv('API_KEY') 
-          apiSecret = os.getenv('API_SECRET')
-          cloudName = os.getenv('CLOUD_NAME')
-
 	  cloudinary.config(cloud_name = cloudName, api_key = apiKey, api_secret = apiSecret)
+          cloudinary.api.update(urllib.quote(currentStatus), tags = pet_tags)
           cloudinary.uploader.rename(currentStatus, newStatus)
+          
 
 
      def getImageByTag(self, request):
@@ -79,10 +83,6 @@ class ImageController:
 	  city =  '^C_' + request.form['city'] 
 	  tags =  urllib.quote(city.strip())
          
-	  apiKey = os.getenv('API_KEY') 
-          apiSecret = os.getenv('API_SECRET')
-          cloudName = os.getenv('CLOUD_NAME')
-
 	  cloudinary.config(cloud_name = cloudName, api_key = apiKey, api_secret = apiSecret)
           data = cloudinary.api.resources_by_tag(tags, tags='True')
           data = json.dumps(data, indent=3, sort_keys=True)
