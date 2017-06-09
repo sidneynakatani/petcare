@@ -8,12 +8,6 @@ def index():
     images = getImages()
     return render_template('index.html', images = images, filter_enabled = False)
 
-@app.route("/find", methods=['POST'])
-def find():
-    kind   = '^E_' + request.form['kind']
-    images = getImagesByTags()
-    return render_template('index.html', images = images, filter_enabled = True, kind = kind.strip())
-
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -39,7 +33,5 @@ def getImages():
      image = ImageController()
      return image.getImages(request)
 
-def getImagesByTags():
-     image = ImageController()
-     return image.getImageByTag(request)
+
 

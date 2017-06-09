@@ -2,12 +2,13 @@ from app import app
 import requests
 import json
 from flask import render_template, Flask, request, session, flash
-from controller.login import LoginController
+from controller.login          import LoginController
 from controller.forgotPassword import ForgotPassController
-from controller.image import ImageController
-from controller.pet import PetController
-from controller.user import UserController
-from dto.user import User
+from controller.image   import ImageController
+from controller.pet     import PetController
+from controller.user    import UserController
+from controller.message import MessageController
+from dto.user           import User
 
 @app.route('/access')
 def access():
@@ -116,6 +117,17 @@ def updatePets():
     
     return render_template('dash.html', name = name, list_pets = list_pets)
 
+@app.route("/find", methods=['POST'])
+def find():
+    kind   = '^E_' + request.form['kind']
+    images = getImagesByTags()
+    return render_template('index.html', images = images, filter_enabled = True, kind = kind.strip())
+
+@app.route("/addMessage", methods=['POST'])
+def addMessage():
+     messages = MessageController()
+     messages.save(request)
+     return index()
 
 @app.route("/logout")
 def logout():
@@ -135,5 +147,9 @@ def getPets(user_code):
 def getUser(user_code):
     user = UserController()
     return user.getUser(user_code)
+
+def getImagesByTags():
+     image = ImageController()
+     return image.getImageByTag(request)
 
 
