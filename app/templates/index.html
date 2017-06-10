@@ -66,7 +66,7 @@
 			  <div class="form-group">
 			    <label for="message-text" class="control-label">Deixe um recado:</label>
                             <textarea class="form-control"  name="message" maxlength="100" ></textarea>
-			    
+			    <input type="hidden" value="" name="pet_id" id="petId"/>
 			  </div>
 	     
 	       </div>
@@ -154,6 +154,8 @@
 
 		{% for value in images['resources'] %}
 
+                  
+
 		    {% if filter_enabled %}
 			
 			{% if kind in value.tags %}
@@ -161,11 +163,14 @@
 				<div class="item">
 					<div class="animate-box">
 						<a href="#">
-						    <img src="{{ value.url }}" alt="Teste" onclick="changeIt(this.src)">
+						    <img src="{{ value.url }}" 
+						       alt="Teste" 
+						       onclick="changeIt(this.src, this.id)" 
+                                                       id="{{value.version}}">
 						</a>
 					</div>
 					<div class="fh5co-desc">
-				
+				                     
 
 							{% set list = value.public_id.split('/') %}
 							Nome: {{ list[0] }} </br>
@@ -189,10 +194,13 @@
 
 		    {% else %}
 
-				<div class="item">
+				<div class="item" >
 					<div class="animate-box">
 						<a href="#">
-						  <img src="{{ value.url }}" alt="Teste" onclick="changeIt(this.src)">
+						  <img src="{{ value.url }}" 
+						       alt="Teste" 
+						       onclick="changeIt(this.src, this.id)" 
+                                                       id="{{value.version}}">
 						</a>
 					</div>
 					<div class="fh5co-desc">
@@ -211,7 +219,8 @@
 								  {% if list[3] == 'E' %}
 								     {{ 'Encontrado' }}
 								  {% endif %}
-					      
+
+					
 					</div>
 			        </div>	
 
@@ -270,10 +279,11 @@
 	</script>
 
 	<script>
-	function changeIt(_src){
-	    //alert(_src);
+	function changeIt(_src, id){
+	    
             var img = _src;
             document.getElementById("imageId").src=img;
+            document.getElementById("petId").value = id;
 	    $('#messageModal').modal('show');
 	}
         </script>
