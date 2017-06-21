@@ -48,14 +48,14 @@ class ImageController:
 
 
      def getImages(self, request):
-
+          
 	  cloudinary.config(cloud_name = cloudName, api_key = apiKey, api_secret = apiSecret)
 	  data = cloudinary.api.resources(max_results=50, tags='True')
 	  data = json.dumps(data, indent=3, sort_keys=True)
           return json.loads(data)
 
      def updateImageStatus(self, request):
-          print "teste"
+          
 	  name    = request.form['name']
           kind    = request.form['kind']
           status  = request.form['status']

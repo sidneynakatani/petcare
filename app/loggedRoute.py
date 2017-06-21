@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, Flask, request, session
 from controller.pet import PetController
 from controller.user import UserController
+from controller.message import MessageController
 
 import json
 
@@ -15,9 +16,17 @@ def dashBoard():
     name = session['logged_name']
     req = getPets(code)
     list_pets = json.loads(req.text)
+    
+    
+    pets  = []
         
+    for pet in list_pets['pets']:
+         pets.append( pet['image_id'])    
 
-    return render_template('dash.html', name = name, list_pets = list_pets)
+    message = MessageController()
+    message_size = message.count(pets)
+
+    return render_template('dash.html', name = name, list_pets = list_pets, message_size = message_size)
 
 @app.route('/profile')
 def profile():

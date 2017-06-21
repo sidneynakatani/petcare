@@ -14,9 +14,17 @@ class MessageController:
          connection = 'mongodb://{0}:{1}@ds059205.mlab.com:59205/ragdoll'.format(user, password)
          client = MongoClient(connection)
          db = client.ragdoll
-         post = {"pet_id": petId, "message": message, "date": datetime.datetime.utcnow()}
+         post = {"pet_id": petId, "message": message, "date": datetime.datetime.utcnow(), "is_new":"true"}
          posts = db.posts
          post_id = posts.insert(post)
          print post_id
 
 
+    def count(self, pets):
+         
+          connection = 'mongodb://{0}:{1}@ds059205.mlab.com:59205/ragdoll'.format(user, password)
+          client = MongoClient(connection)
+          db = client.ragdoll
+          posts = db.posts
+          p = posts.find( { "pet_id": { "$in": pets } , "is_new":"true"  } )
+          return p.count()

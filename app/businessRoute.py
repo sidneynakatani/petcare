@@ -21,6 +21,7 @@ def access():
 @app.route('/auth', methods=['POST'])
 def auth():
     error = None
+    pets  = []
     
     login = LoginController()
     req = login.auth(request)
@@ -39,8 +40,14 @@ def auth():
         req = getPets(code)
         list_pets = json.loads(req.text)
 
+        message = MessageController()
+        
+        for pet in list_pets['pets']:
+             pets.append( pet['image_id'])
 
-	return render_template('dash.html', name = name, list_pets = list_pets)
+        message_size =  message.count(pets)
+
+	return render_template('dash.html', name = name, list_pets = list_pets, message_size = message_size)
     else:
         error = 'Login ou Senha invalidos'
 
