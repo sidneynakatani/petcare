@@ -26,7 +26,10 @@ def dashBoard():
     message = MessageController()
     message_size = message.count(pets)
 
-    return render_template('dash.html', name = name, list_pets = list_pets, message_size = message_size)
+    pet_list = []
+    pet_list = message.get(pets)
+
+    return render_template('dash.html', name = name, list_pets = list_pets, message_size = message_size, pet_list = pet_list)
 
 @app.route('/profile')
 def profile():
