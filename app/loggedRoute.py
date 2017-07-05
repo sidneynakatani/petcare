@@ -14,20 +14,16 @@ def dashBoard():
 
     code = session['logged_code']
     name = session['logged_name']
+    pets = session['pets_code']
+    
     req = getPets(code)
     list_pets = json.loads(req.text)
-    
-    
-    pets  = []
-        
-    for pet in list_pets['pets']:
-         pets.append( pet['image_id'])    
 
     message = MessageController()
-    message_size = message.count(pets)
-
     pet_list = []
     pet_list = message.get(pets)
+
+    message_size = len(pet_list)
 
     return render_template('dash.html', name = name, list_pets = list_pets, message_size = message_size, pet_list = pet_list)
 
@@ -38,10 +34,18 @@ def profile():
 
     code = session['logged_code']
     name = session['logged_name']
+    pets = session['pets_code']
+
     req = getUser(code)
     user = json.loads(req.text)
 
-    return render_template('profile.html', name = name, user = user)
+    message = MessageController()
+    pet_list = []
+    pet_list = message.get(pets)
+
+    message_size = len(pet_list)
+
+    return render_template('profile.html', name = name, user = user, message_size = message_size, pet_list = pet_list)
 
 @app.route('/add')
 def add():
@@ -49,8 +53,15 @@ def add():
     	return index()
 
     name = session['logged_name']
+    pets = session['pets_code']
 
-    return render_template('add.html', name = name)
+    message = MessageController()
+    pet_list = []
+    pet_list = message.get(pets)
+
+    message_size = len(pet_list)
+
+    return render_template('add.html', name = name, message_size = message_size, pet_list = pet_list)
 
 @app.route('/config')
 def config():
@@ -58,8 +69,15 @@ def config():
     	return index()
 
     name = session['logged_name']
+    pets = session['pets_code']
 
-    return render_template('config.html', name = name)
+    message = MessageController()
+    pet_list = []
+    pet_list = message.get(pets)
+
+    message_size = len(pet_list)
+
+    return render_template('config.html', name = name, message_size = message_size, pet_list = pet_list)
 
 @app.route('/message')
 def message():
@@ -67,8 +85,15 @@ def message():
     	return index()
 
     name = session['logged_name']
+    pets = session['pets_code']
 
-    return render_template('message.html', name = name)
+    message = MessageController()
+    pet_list = []
+    pet_list = message.get(pets)
+
+    message_size = len(pet_list)
+
+    return render_template('message.html', name = name, message_size = message_size, pet_list = pet_list)
 
 
 def index():
@@ -83,6 +108,8 @@ def getPets(user_code):
 def getUser(user_code):
     user = UserController()
     return user.getUser(user_code)
+
+
 
 
 

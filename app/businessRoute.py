@@ -34,9 +34,6 @@ def auth():
     code = response['code']
     
     if auth:
-        session['logged_in'] = True
-        session['logged_name'] = name
-        session['logged_code'] = code
 
         req = getPets(code)
         list_pets = json.loads(req.text)
@@ -46,9 +43,14 @@ def auth():
         for pet in list_pets['pets']:
              pets.append( pet['image_id'])
 
-        message_size =  message.count(pets)
+        pet_list     = message.get(pets)
+        message_size =  len(pet_list)
 
-        pet_list = message.get(pets)
+        session['logged_in'] = True
+        session['pets_code'] = pets
+        session['logged_name'] = name
+        session['logged_code'] = code
+        
 
 	return render_template('dash.html', name = name, list_pets = list_pets, message_size = message_size, pet_list = pet_list)
     else:
