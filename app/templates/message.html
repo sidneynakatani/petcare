@@ -34,6 +34,22 @@
 
 <body>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Mensagem</h4>
+      </div>
+	      <div class="modal-body">
+                   <textarea class="form-control" maxlength="50" id="message-id" readonly></textarea>
+	      </div>
+       </div>
+  </div>
+</div>
+
+
+
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -187,7 +203,10 @@
                                                 <td>3326</td>
                                                 <td>10/21/2013</td>
                                                 <td>
-                                                    <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg"> {{ val.message }} </a>
+                                                    <a href="#" 
+						       class="btnSelect"> 
+                                                         {{ val.message }} 
+                                                     </a>
                                                 </td>
                                                 <td>Lida</td>
                                              </tr>
@@ -204,16 +223,7 @@
                 <!-- /.row -->
 
 
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <p> Teste </p>
-       <p>Lorem ipsum dolor sit amet, consectetur...</p>
-       <p>Lorem ipsum dolor sit amet, consectetur...</p>
-          
-    </div>
-  </div>
-</div>
+
 
 
                  <div> </br></br></br></br></br></br></br></div>
@@ -232,6 +242,27 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="static/js/bootstrap.min.js"></script>
+
+    <script>
+
+
+
+    // code to read selected table row cell data (values).
+    $(".btnSelect").click(function() {
+         
+         // get the current row
+         var currentRow=$(this).closest("tr"); 
+         
+         var message  = currentRow.find("td:eq(2)").text(); 
+         
+	 $("#message-id").text(message.trim());
+	
+
+         $('#myModal').modal('show');
+         
+    });
+
+</script>
 
     
 
