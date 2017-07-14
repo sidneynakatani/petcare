@@ -200,15 +200,15 @@
 
                                            {% for val in pet_list %}
                                              <tr>
-                                                <td>3326</td>
-                                                <td>10/21/2013</td>
+                                                <td>{{ val.pet_id }}</td>
+                                                <td> {{ val.date }} </td>
                                                 <td>
                                                     <a href="#" 
 						       class="btnSelect"> 
                                                          {{ val.message }} 
                                                      </a>
                                                 </td>
-                                                <td>Lida</td>
+                                                <td>{{ val.is_new }} </td>
                                              </tr>
                                            {% endfor %}
                                             
