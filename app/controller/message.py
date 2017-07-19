@@ -1,4 +1,5 @@
 import requests, os, datetime
+import hashlib
 import pymongo
 from pymongo import MongoClient
 
@@ -9,12 +10,19 @@ class MessageController:
 
 
     def save(self, request):
+
          message = request.form['message']
          petId   = request.form['pet_id']
+         timestamp = datetime.datetime.utcnow()
+         
+         hashId = hashlib.md5()      
+         hashId.update(str(timestamp))
+       
+
          connection = 'mongodb://{0}:{1}@ds059205.mlab.com:59205/ragdoll'.format(user, password)
          client = MongoClient(connection)
          db = client.ragdoll
-         post = {"pet_id": petId, "message": message, "date": datetime.datetime.utcnow(), "is_new":"true"}
+         post = {"pet_id": petId, "message": message, "date": timestamp, "is_new":"true", "hashId" : hashId.hexdigest()}
          posts = db.posts
          post_id = posts.insert(post)
          print post_id
@@ -46,6 +54,26 @@ class MessageController:
 
           return pets_list
 
+    def markAsRead(self, request):
+         petId  = request.form['pet_id']
+         hashId = request.form['hash_id']
+
+         print "["+ petId + "]"
+         print "["+ hashId + "]"
+         
+         connection = 'mongodb://{0}:{1}@ds059205.mlab.com:59205/ragdoll'.format(user, password)
+         client = MongoClient(connection)
+         db = client.ragdoll
+         posts = db.posts
+         db.posts.update(
+              {"pet_id": petId, "hashId": hashId},
+                  {
+		   "$set": {
+		    "is_new":"false"
+		    }
+		  }
+              )
+         
 
 
 

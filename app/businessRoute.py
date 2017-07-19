@@ -141,6 +141,23 @@ def addMessage():
      messages.save(request)
      return index()
 
+
+@app.route("/readMessage", methods=['POST'])
+def readMessage():
+
+     name = session['logged_name']
+     pets = session['pets_code']    
+
+     messages = MessageController()
+     messages.markAsRead(request)
+
+     pet_list = []
+     pet_list = messages.get(pets)
+
+     message_size = len(pet_list)
+     return render_template('message.html', name = name, message_size = message_size, pet_list = pet_list)
+
+
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
