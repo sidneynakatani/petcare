@@ -152,7 +152,7 @@ def readMessage():
      messages.markAsRead(request)
 
      pet_list = []
-     pet_list = messages.get(pets)
+     pet_list = messages.getAll(pets)
 
      message_size = len(pet_list)
      return render_template('message.html', name = name, message_size = message_size, pet_list = pet_list)

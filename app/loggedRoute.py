@@ -89,9 +89,9 @@ def message():
 
     message = MessageController()
     pet_list = []
-    pet_list = message.get(pets)
+    pet_list = message.getAll(pets)
 
-    message_size = len(pet_list)
+    message_size = message.count(pets)
 
     return render_template('message.html', name = name, message_size = message_size, pet_list = pet_list)
 

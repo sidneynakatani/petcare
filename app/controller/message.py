@@ -26,7 +26,7 @@ class MessageController:
          posts = db.posts
          post_id = posts.insert(post)
          print post_id
-
+    
 
     def count(self, pets):
          
@@ -36,6 +36,23 @@ class MessageController:
           posts = db.posts
           p = posts.find( { "pet_id": { "$in": pets } , "is_new":"true"  } )
           return p.count()
+
+
+    def getAll(self, pets):
+
+          
+          connection = 'mongodb://{0}:{1}@ds059205.mlab.com:59205/ragdoll'.format(user, password)
+          client = MongoClient(connection)
+          db = client.ragdoll
+          posts = db.posts
+          p = posts.find( { "pet_id": { "$in": pets } } )
+          
+          pets_list = []
+
+          for pet in p:
+               pets_list.append(pet)
+
+          return pets_list
 
 
     def get(self, pets):
