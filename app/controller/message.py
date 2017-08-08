@@ -75,8 +75,9 @@ class MessageController:
          petId  = request.form['pet_id']
          hashId = request.form['hash_id']
 
-         print "["+ petId + "]"
-         print "["+ hashId + "]"
+         timestamp = datetime.datetime.utcnow()
+         timestamp = timestamp  + datetime.timedelta(days=5)
+
          
          connection = 'mongodb://{0}:{1}@ds059205.mlab.com:59205/ragdoll'.format(user, password)
          client = MongoClient(connection)
@@ -86,7 +87,8 @@ class MessageController:
               {"pet_id": petId, "hashId": hashId},
                   {
 		   "$set": {
-		    "is_new":"false"
+		    "is_new" : "false",
+                    "date"   : timestamp
 		    }
 		  }
               )
